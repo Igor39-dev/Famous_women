@@ -1,83 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CleanPro — Клининговая компания</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f7f7f7;
-        }
-        header {
-            background-color: #3c89e8;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .section {
-            padding: 20px;
-            text-align: center;
-        }
-        .services {
-            background: white;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 900px;
-            border-radius: 10px;
-        }
-        footer {
-            background: #222;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-        }
-        .phone {
-            font-size: 20px;
-            font-weight: bold;
-            color: #3c89e8;
-        }
-    </style>
-</head>
-<body>
+<h1>{{title}}</h1>
+{% for item in page_obj %}
+<p>{{ item.pk }}: {{ item.title }}</p>
+{% endfor %}
 
-<header>
-    <h1>CleanPro</h1>
-    <p>Профессиональная уборка квартир и офисов</p>
-</header>
-
-<section class="section">
-    <h2>Почему выбирают нас?</h2>
-    <p>Быстро, аккуратно и по доступной цене!</p>
-</section>
-
-<section class="services">
-    <h3>Наши услуги:</h3>
-    <ul style="text-align: left; max-width: 300px; margin: auto;">
-        <li>Уборка квартиры</li>
-        <li>Генеральная уборка</li>
-        <li>Уборка офиса</li>
-        <li>Мойка окон</li>
+<nav>
+    <ul>
+        {% for p in page_obj.paginator.page_range %}
+        <li>
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endfor %}
     </ul>
-</section>
-
-<section class="section">
-    <h3>Контакты</h3>
-    <p>Позвоните нам:</p>
-    <p class="phone">+7 (900) 123-45-67</p>
-    <p>Работаем ежедневно 09:00 — 21:00</p>
-</section>
-
-<footer>
-    © 2025 CleanPro — все права защищены.
-</footer>
-
-</body>
-</html>
-
+</nav>
 
 {% endblock %}
